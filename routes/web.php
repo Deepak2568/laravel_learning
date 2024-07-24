@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\TestController;
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get("/",[TestController::class,'welcome']);
 
 // Get data from url parameter
 Route::get('/test/{id}', function ($id) {
@@ -40,4 +43,24 @@ $email = $request->email;
 $mobno = $request->mobno;
 // return 'My Name is '.$name.' and my email address is '.$email. ' and mobile num is '.$mobno;
 return redirect('user_form')->with('message','successfully saved');
+});
+
+
+// group route
+Route::prefix('gallery')->group(function(){
+    Route::get('photos', function () {
+        return 'photos';
+    });
+    Route::get('videos', function () {
+        return 'videos';
+    });
+});
+
+// Middleware route
+Route::get('/post/{id}', function ($id) {
+   if($id == 1) {
+    return 'post id is'.$id;
+   }elseif($id == 2) {
+    return 'post id is'.$id;
+   }
 });
