@@ -63,4 +63,22 @@ Route::get('/post/{id}', function ($id) {
    }elseif($id == 2) {
     return 'post id is'.$id;
    }
+})->middleware('month');
+
+// blade templates
+Route::get("student",function(){
+    return view('bladelayouts.main');
+});
+
+Route::view('bhome','bladelayouts.home');
+Route::view('bcontact','bladelayouts.contact');
+
+// Conditonal statements
+Route::get('statement',function(){
+    $name = 'Jesuraja Deepak';
+    $id = 2;
+    $data = false;
+    $authors = ['deepak','abi','appa','amma'];
+    $family = ['Appa','Amma','Deepak','Abi',];
+    return view('condition',compact('name','id','authors','data','family'));
 });
