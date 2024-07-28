@@ -57,6 +57,7 @@
             </div>
         </form>
     @endunless
+    @if($data)
     <table class="tale table-bordered">
         <tr>
             <th>Name</th>
@@ -74,5 +75,6 @@
         </tr>
         @endforeach
     </table>
+    @endisset
 </body>
 </html>
