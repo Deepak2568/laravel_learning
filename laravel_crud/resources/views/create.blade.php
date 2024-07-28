@@ -17,7 +17,13 @@
     </div>
     <a href="{{ url('index') }}">Click here to go back</a>
     @endif
-    @unless(session('success'))
+    @if(session('message'))
+    <div class="alert alert-danger">
+        {{ session('message') }}
+    </div>
+    <a href="{{ url('index') }}">Click here to go back</a>
+    @endif
+    @unless(session('success') || session('message'))
         <form action="{{url("create")}}" method="POST">
             @csrf
             <table class="table table-bordered" style="width:100%;">
@@ -51,5 +57,22 @@
             </div>
         </form>
     @endunless
+    <table class="tale table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Phone Number</th>
+            <th colspan="2">Action</th>
+        </tr>
+        @foreach ($data as $stud)
+        <tr>
+            <td>{{$stud->stud_name}}</td>
+            <td>{{$stud->stud_age}}</td>
+            <td>{{$stud->phone}}</td>
+            <td><a href="{{url("edit/".$stud->id)}}">Edit</a></td>
+            <td><a href="{{url("delete/".$stud->id)}}">Delete</a></td>
+        </tr>
+        @endforeach
+    </table>
 </body>
 </html>

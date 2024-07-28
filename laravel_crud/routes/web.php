@@ -8,4 +8,6 @@ Route::get('/', function () {
 
 Route::get("index",[SampleController::class,"show"]);
 Route::post("create",[SampleController::class,"create"]);
-
+Route::get("edit/{id}",[SampleController::class,"edit"]);
+Route::post("update/{id}",[SampleController::class,"update"]);
+Route::get("delete/{id}",[SampleController::class,"destroy"]);
